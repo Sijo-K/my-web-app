@@ -15,17 +15,17 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Running tests...'
-                // Add any testing steps if applicable
-                // For example, use a command-line tool to check for HTML errors, if desired.
-                // sh 'npm install -g htmlhint && htmlhint index.html'
+                echo 'Running HTML validation...'
+                // Run HTMLHint to validate index.html
+                sh 'npm install -g htmlhint'
+                sh 'htmlhint index.html'
             }
         }
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to staging server...'
-                // Add your deployment logic here
-                // For example, copying files to a staging server:
+                // Replace the following command with your actual deployment logic
+                // For example, you might use SCP to copy the index.html to a staging server
                 // sh 'scp -r index.html user@staging-server:/path/to/deploy'
             }
         }
