@@ -1,1 +1,19 @@
 
+{
+  "name": "my-web-app",
+  "version": "1.0.0",
+  "description": "A simple web application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest" // Replace with your test command
+  },
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1" // Example dependency
+  },
+  "devDependencies": {
+    "jest": "^26.6.3" // Example dev dependency for testing
+  }
+}
