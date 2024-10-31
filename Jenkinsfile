@@ -1,52 +1,41 @@
- pipeline {
+pipeline {
     agent any
-
-    environment {
-        REPO_URL = 'https://github.com/Sijo-K/my-web-app.git'
-        STAGING_SERVER = 'Sijo-K@staging-server-address'
-        APP_DIR = '/path/to/deployment/dir'
-    }
 
     stages {
         stage('Checkout') {
             steps {
                 echo 'Checking out code from GitHub...'
-                // Cloning the GitHub repository
-                git url: env.REPO_URL, branch: 'main'
+                git url: 'https://github.com/Sijo-K/my-web-app.git', branch: 'main'
             }
         }
-
         stage('Build') {
             steps {
-                echo 'Building the application...'
-                // Installing dependencies
-                sh 'npm install'
+                echo 'No build step required for static HTML.'
             }
         }
-
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                // Running tests
-                sh 'npm test'
+                // Add any testing steps if applicable
+                // For example, use a command-line tool to check for HTML errors, if desired.
+                // sh 'npm install -g htmlhint && htmlhint index.html'
             }
         }
-
         stage('Deploy to Staging') {
-            when {
-                expression { return params.DEPLOY_TO_STAGING == true }
-            }
             steps {
-                echo 'Deploying to the staging server...'
-                // Copy files to the staging server using scp
-                sh """
-                scp -r * ${env.STAGING_SERVER}:${env.APP_DIR}
-                """
+                echo 'Deploying to staging server...'
+                // Add your deployment logic here
+                // For example, copying files to a staging server:
+                // sh 'scp -r index.html user@staging-server:/path/to/deploy'
             }
         }
     }
 
     post {
+        always {
+            echo 'Cleaning up...'
+            // Any cleanup actions if necessary
+        }
         success {
             echo 'Pipeline completed successfully!'
         }
