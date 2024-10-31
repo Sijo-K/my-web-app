@@ -16,9 +16,10 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running HTML validation...'
-                // Run HTMLHint to validate index.html
-                sh 'npm install -g htmlhint'
-                sh 'htmlhint index.html'
+                // Install HTMLHint locally
+                sh 'npm install htmlhint'
+                // Run HTMLHint using npx
+                sh 'npx htmlhint index.html'
             }
         }
         stage('Deploy to Staging') {
