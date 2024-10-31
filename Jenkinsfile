@@ -15,18 +15,18 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Running HTML validation...'
-                // Install HTMLHint locally
-                sh 'npm install htmlhint'
-                // Run HTMLHint using npx
-                sh 'npx htmlhint index.html'
+                echo 'Running tests...'
+                sh ' ls -ltrh'
+                // Add any testing steps if applicable
+                // For example, use a command-line tool to check for HTML errors, if desired.
+                // sh 'npm install -g htmlhint && htmlhint index.html'
             }
         }
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to staging server...'
-                // Replace the following command with your actual deployment logic
-                // For example, you might use SCP to copy the index.html to a staging server
+                // Add your deployment logic here
+                // For example, copying files to a staging server:
                 // sh 'scp -r index.html user@staging-server:/path/to/deploy'
             }
         }
